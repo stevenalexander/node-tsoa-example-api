@@ -1,4 +1,4 @@
-import {User, UserCreationRequest} from '../models/user'
+import {User, UserCreationRequest} from 'tsoa-example-models'
 
 export class UserService {
   public async get(id: number): Promise<User> {

@@ -1,6 +1,6 @@
 import {Get, Post, Route, Body, SuccessResponse, Controller } from 'tsoa'
 import {UserService} from '../services/userService'
-import {User, UserCreationRequest} from '../models/user'
+import {User, UserCreationRequest} from 'tsoa-example-models'
 
 @Route('Users')
 export class UsersController extends Controller {

@@ -20,7 +20,8 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "method-override": "^2.3.10",
-    "tsoa": "^2.1.1"
+    "tsoa": "^2.1.1",
+    "tsoa-example-models": "git+https://github.com/stevenalexander/node-tsoa-example-models.git#v0.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.8",
