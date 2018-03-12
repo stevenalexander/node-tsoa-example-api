@@ -1,5 +1,7 @@
 # Node TSOA example API
 
+[![BuildStatus](https://travis-ci.org/stevenalexander/node-tsoa-example-api.svg?branch=master)](https://travis-ci.org/stevenalexander/node-tsoa-example-api?branch=master)
+
 Example Node API application with automatic generated Swagger documentation and static type checking on model objects, with model/request definitions shared via external versioned models module.
 
 This repo is part of a collection of three repos that make up the entire example solution, [web](https://github.com/stevenalexander/node-tsoa-example-web), [api](https://github.com/stevenalexander/node-tsoa-example-api) and [models](https://github.com/stevenalexander/node-tsoa-example-models).
