@@ -4,6 +4,13 @@ import { UserCreationRequest } from 'tsoa-example-models'
 import { UserService } from '../../src/services/userService'
 
 describe('UserService', () => {
+  describe('getAll', () => {
+    it('should return test users in promise', async () => {
+      let userService = new UserService
+      let users = await userService.getAll()
+      assert.equal(2, users.length)
+    })
+  })
   describe('get', () => {
     it('should return test user in promise', async () => {
       let userService = new UserService

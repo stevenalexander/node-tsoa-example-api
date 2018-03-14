@@ -22,6 +22,24 @@ const models: TsoaRoute.Models = {
 };
 
 export function RegisterRoutes(app: any) {
+    app.get('/api/Users',
+        function(request: any, response: any, next: any) {
+            const args = {
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new UsersController();
+
+
+            const promise = controller.getAll.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, next);
+        });
     app.get('/api/Users/:id',
         function(request: any, response: any, next: any) {
             const args = {

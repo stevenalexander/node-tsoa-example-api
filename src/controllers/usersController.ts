@@ -4,6 +4,11 @@ import {User, UserCreationRequest} from 'tsoa-example-models'
 
 @Route('Users')
 export class UsersController extends Controller {
+  @Get()
+  public async getAll(): Promise<User[]> {
+    return await new UserService().getAll()
+  }
+
   @Get('{id}')
   public async getUser(id: number): Promise<User> {
     return await new UserService().get(id)
