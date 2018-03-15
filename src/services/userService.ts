@@ -1,5 +1,7 @@
+import {provideSingleton} from '../ioc'
 import {User, UserCreationRequest} from 'tsoa-example-models'
 
+@provideSingleton(UserService)
 export class UserService {
   public async getAll(): Promise<User[]> {
     return new Promise<User[]>((resolve, reject) => {

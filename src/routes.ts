@@ -1,5 +1,6 @@
 /* tslint:disable */
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { iocContainer } from './ioc';
 import { UsersController } from './controllers/usersController';
 
 const models: TsoaRoute.Models = {
@@ -34,7 +35,7 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new UsersController();
+            const controller = iocContainer.get<UsersController>(UsersController);
 
 
             const promise = controller.getAll.apply(controller, validatedArgs);
@@ -53,7 +54,7 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new UsersController();
+            const controller = iocContainer.get<UsersController>(UsersController);
 
 
             const promise = controller.getUser.apply(controller, validatedArgs);
@@ -72,7 +73,7 @@ export function RegisterRoutes(app: any) {
                 return next(err);
             }
 
-            const controller = new UsersController();
+            const controller = iocContainer.get<UsersController>(UsersController);
 
 
             const promise = controller.createUser.apply(controller, validatedArgs);

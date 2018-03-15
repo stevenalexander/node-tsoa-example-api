@@ -1,32 +1,62 @@
 import 'mocha'
 import { assert } from 'chai'
-import { UserCreationRequest } from 'tsoa-example-models'
+import '../../src/ioc'
+import { mock, instance, when, verify } from 'ts-mockito'
+import { User, UserCreationRequest } from 'tsoa-example-models'
+import { UserService } from '../../src/services/userService'
 import { UsersController } from '../../src/controllers/usersController'
 
 describe('UsersController', () => {
+  let usersController: UsersController
+  let userService: UserService
+  let user1: User = {
+    id: 1234,
+    email: 'string',
+    name: 'Name',
+    phoneNumbers: [],
+    status: 'status'
+  }
+
+  beforeEach(() => {
+    userService = mock(UserService)
+    let userServiceInstance = instance(userService)
+    usersController = new UsersController(userServiceInstance)
+  })
+
   describe('getAll', () => {
     it('should call service', async () => {
-      let usersController = new UsersController
-      let users = await usersController.getAll() // TODO should mock call to service
-      assert.equal(2, users.length)
+      when(userService.getAll()).thenResolve([user1])
+
+      let users = await usersController.getAll()
+
+      verify(userService.getAll()).called()
+      assert.equal(1234, users[0].id)
     })
   })
+
   describe('getUser', () => {
     it('should call service', async () => {
-      let usersController = new UsersController
-      let user = await usersController.getUser(1) // TODO should mock call to service
+      when(userService.get(1)).thenReturn(Promise.resolve(user1))
+
+      let user = await usersController.getUser(1)
+
+      verify(userService.get(1)).called()
       assert.equal(1234, user.id)
     })
   })
+
   describe('createUser', () => {
     it('should call service', async () => {
-      let usersController = new UsersController
       let userCreationRequest: UserCreationRequest = {
         name: 'Name',
         email: 'Email',
         phoneNumbers: []
       }
-      await usersController.createUser(userCreationRequest) // TODO should mock call to service
+      when(userService.create(userCreationRequest)).thenReturn(Promise.resolve())
+
+      await usersController.createUser(userCreationRequest)
+
+      verify(userService.create(userCreationRequest)).called()
     })
   })
 })

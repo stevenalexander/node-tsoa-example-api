@@ -20,7 +20,10 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "inversify": "^4.11.1",
+    "inversify-binding-decorators": "^3.2.0",
     "method-override": "^2.3.10",
+    "reflect-metadata": "^0.1.12",
     "tsoa": "^2.1.1",
     "tsoa-example-models": "git+https://github.com/stevenalexander/node-tsoa-example-models.git#v0.1"
   },
@@ -36,6 +39,7 @@
     "ncp": "^2.0.0",
     "nodemon": "^1.14.12",
     "rimraf": "^2.6.2",
+    "ts-mockito": "^2.3.0",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
     "typescript": "^2.7.1"
