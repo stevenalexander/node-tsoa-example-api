@@ -6,7 +6,7 @@ Example Node API application with automatic generated Swagger documentation and 
 
 This repo is part of a collection of three repos that make up the entire example solution, [web](https://github.com/stevenalexander/node-tsoa-example-web), [api](https://github.com/stevenalexander/node-tsoa-example-api) and [models](https://github.com/stevenalexander/node-tsoa-example-models).
 
-Uses [TSOA](https://github.com/lukeautry/tsoa) to generate routes and swagger documentation based on decorated controllers and models. Provides a well structured Node API with type checked models and business logic with documentation aiding external parties to consume it.
+Uses [TSOA](https://github.com/lukeautry/tsoa) to generate routes and swagger documentation based on decorated controllers and models. Provides a well structured Node API with type checked models and business logic with documentation aiding external parties to consume it. Services required by the controllers are injected into them using Dependency Injection via [Inversify](https://www.npmjs.com/package/inversify).
 
 ![swagger](https://raw.githubusercontent.com/stevenalexander/node-tsoa-example/master/images/swagger.png "swagger doc")
 
@@ -26,6 +26,7 @@ Requires:
 * `tsconfig.json` - TypeScript config for `tsc` compile used to generate Javascript
 * `tslint.json` - TypeScript linting config setup to mimic StandardJS
 * `tsoa.json` - TSOA config, see [here](https://github.com/lukeautry/tsoa) for details
+* `ioc.ts` - [Inversify IoC container](https://www.npmjs.com/package/inversify), see [here](https://github.com/lukeautry/tsoa#dependency-injection--ioc) for details
 * `dist` - folder for generate JavaScript
 * `dist/swagger.json` - TSOA generated swagger doc from command `npm run-script swagger-gen`
 
