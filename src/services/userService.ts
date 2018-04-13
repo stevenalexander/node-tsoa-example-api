@@ -7,17 +7,17 @@ export class UserService {
     return new Promise<User[]>((resolve, reject) => {
       let users: User[] = [{
         id: 1,
-        email: 'string',
+        email: 'aant@test.com',
         name: 'Adam Ant',
-        phoneNumbers: [],
-        status: 'status'
+        phoneNumbers: ['12345', '54321'],
+        status: 'active'
       },
       {
         id: 2,
-        email: 'string',
+        email: 'bboyd@test.com',
         name: 'Belle Boyd',
-        phoneNumbers: [],
-        status: 'status'
+        phoneNumbers: ['22345', '54322'],
+        status: 'active'
       }]
 
       resolve(users)
@@ -27,11 +27,11 @@ export class UserService {
   public async get(id: number): Promise<User> {
     return new Promise<User>((resolve, reject) => {
       let user: User = {
-        id: 1234,
-        email: 'string',
-        name: 'Name',
-        phoneNumbers: [],
-        status: 'status'
+        id: 1,
+        email: 'aant@test.com',
+        name: 'Adam Ant',
+        phoneNumbers: ['12345', '54321'],
+        status: 'active'
       }
 
       resolve(user)

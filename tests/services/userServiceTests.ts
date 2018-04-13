@@ -15,8 +15,8 @@ describe('UserService', () => {
     it('should return test user in promise', async () => {
       let userService = new UserService
       let user = await userService.get(1)
-      assert.equal(1234, user.id)
-      assert.equal('Name', user.name)
+      assert.equal(1, user.id)
+      assert.equal('Adam Ant', user.name)
     })
   })
   describe('create', () => {
