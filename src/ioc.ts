@@ -1,8 +1,13 @@
 import 'reflect-metadata'
 import {Container, inject, interfaces} from 'inversify'
 import {autoProvide, makeFluentProvideDecorator, makeProvideDecorator} from 'inversify-binding-decorators'
+import * as Knex from 'knex'
+import {development} from './knexfile'
 
 const iocContainer = new Container()
+
+let knex: Knex = Knex(development)
+iocContainer.bind<Knex>('knex').toConstantValue(knex)
 
 const provide = makeProvideDecorator(iocContainer)
 const fluentProvider = makeFluentProvideDecorator(iocContainer)

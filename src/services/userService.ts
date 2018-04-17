@@ -1,44 +1,43 @@
-import {provideSingleton} from '../ioc'
+import * as Knex from 'knex'
+import {iocContainer, provideSingleton} from '../ioc'
 import {User, UserCreationRequest} from 'tsoa-example-models'
 
 @provideSingleton(UserService)
 export class UserService {
   public async getAll(): Promise<User[]> {
-    return new Promise<User[]>((resolve, reject) => {
-      let users: User[] = [{
-        id: 1,
-        email: 'aant@test.com',
-        name: 'Adam Ant',
-        phoneNumbers: ['12345', '54321'],
-        status: 'active'
-      },
-      {
-        id: 2,
-        email: 'bboyd@test.com',
-        name: 'Belle Boyd',
-        phoneNumbers: ['22345', '54322'],
-        status: 'active'
-      }]
+    let knex = iocContainer.get<Knex>('knex')
 
-      resolve(users)
-    })
+    return knex('User').select('userId', 'name', 'email', 'phoneNumbers', 'status')
+      .then(result => {
+        return result.map(r => this.mapUser(r))
+      })
   }
 
   public async get(id: number): Promise<User> {
-    return new Promise<User>((resolve, reject) => {
-      let user: User = {
-        id: 1,
-        email: 'aant@test.com',
-        name: 'Adam Ant',
-        phoneNumbers: ['12345', '54321'],
-        status: 'active'
-      }
+    let knex = iocContainer.get<Knex>('knex')
 
-      resolve(user)
-    })
+    return knex('User').where('userId', id).first('userId', 'name', 'email', 'phoneNumbers', 'status')
+      .then(r => this.mapUser(r))
   }
 
   public async create(requestBody: UserCreationRequest): Promise<void> {
-    return Promise.resolve()
+    let knex = iocContainer.get<Knex>('knex')
+
+    return knex('User').insert({
+      email: requestBody.email,
+      name: requestBody.name,
+      phoneNumbers: requestBody.phoneNumbers.join(',')
+    })
+    .then(() => { return null })
+  }
+
+  private mapUser(userResult: any): User {
+    return <User>{
+      id: userResult.userId,
+      email: userResult.email,
+      name: userResult.name,
+      phoneNumbers: [userResult.phoneNumbers],
+      status: userResult.status
+    }
   }
 }

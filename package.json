@@ -4,7 +4,8 @@
   "description": "TSOA example API",
   "main": "dist/server.js",
   "scripts": {
-    "start": "npm run build && node ./dist/server.js",
+    "migrations": "knex migrate:latest --cwd ./dist",
+    "start": "npm run build && npm run migrations && node ./dist/server.js",
     "dev-start": "tsc --watch & nodemon ./dist/server.js",
     "build": "npm run clean && npm run lint && npm run swagger-gen && npm run routes-gen && tsc && npm run copy-swagger-ui",
     "lint": "tslint --project tslint.json -e ./src/**/routes.ts",
@@ -22,8 +23,10 @@
     "express": "^4.16.2",
     "inversify": "^4.11.1",
     "inversify-binding-decorators": "^3.2.0",
+    "knex": "^0.14.6",
     "method-override": "^2.3.10",
     "reflect-metadata": "^0.1.12",
+    "sqlite3": "^4.0.0",
     "tsoa": "^2.1.1",
     "tsoa-example-models": "git+https://github.com/stevenalexander/node-tsoa-example-models.git#v0.1"
   },
@@ -31,6 +34,7 @@
     "@types/body-parser": "^1.16.8",
     "@types/chai": "^4.1.2",
     "@types/express": "^4.11.1",
+    "@types/knex": "^0.14.10",
     "@types/method-override": "0.0.31",
     "@types/mocha": "^2.2.48",
     "@types/node": "^9.4.5",

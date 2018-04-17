@@ -44,3 +44,6 @@ errorShots
 
 # ts
 dist
+
+# sqlite
+*.sqlite3

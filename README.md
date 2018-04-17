@@ -23,10 +23,11 @@ Requires:
 * `src/swagger-ui` - static html used for serving swagger documentation as html UI
 * `src/routes.ts` - TSOA generated routes from command `npm run-script routes-gen`
 * `src/server.ts` - start script for Express
+* `src/ioc.ts` - [Inversify IoC container](https://www.npmjs.com/package/inversify), see [here](https://github.com/lukeautry/tsoa#dependency-injection--ioc) for details
+* `src/knexfile` - Database configuration for [knex](http://knexjs.org/) query builder used in persistence and migrations
 * `tsconfig.json` - TypeScript config for `tsc` compile used to generate Javascript
 * `tslint.json` - TypeScript linting config setup to mimic StandardJS
 * `tsoa.json` - TSOA config, see [here](https://github.com/lukeautry/tsoa) for details
-* `ioc.ts` - [Inversify IoC container](https://www.npmjs.com/package/inversify), see [here](https://github.com/lukeautry/tsoa#dependency-injection--ioc) for details
 * `dist` - folder for generate JavaScript
 * `dist/swagger.json` - TSOA generated swagger doc from command `npm run-script swagger-gen`
 
