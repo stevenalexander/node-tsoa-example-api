@@ -1,6 +1,6 @@
 import * as Knex from 'knex'
 import {iocContainer, provideSingleton} from '../ioc'
-import {User, UserCreationRequest} from 'tsoa-example-models'
+import {User, UserCreationRequest, UserChangeOfStatusRequest} from 'tsoa-example-models'
 
 @provideSingleton(UserService)
 export class UserService {
@@ -29,6 +29,14 @@ export class UserService {
       phoneNumbers: requestBody.phoneNumbers.join(',')
     })
     .then(() => { return null })
+  }
+
+  public async updateStatus(requestBody: UserChangeOfStatusRequest): Promise<void> {
+    let knex = iocContainer.get<Knex>('knex')
+
+    return knex('User').where('userId', requestBody.id)
+      .update('status', requestBody.status)
+      .then(() => { return null })
   }
 
   private mapUser(userResult: any): User {

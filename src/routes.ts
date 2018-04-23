@@ -20,6 +20,15 @@ const models: TsoaRoute.Models = {
             "phoneNumbers": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
         },
     },
+    "UserStatus": {
+        "enums": ["ACTIVE", "DISABLED"],
+    },
+    "UserChangeOfStatusRequest": {
+        "properties": {
+            "id": { "dataType": "double", "required": true },
+            "status": { "ref": "UserStatus", "required": true },
+        },
+    },
 };
 
 export function RegisterRoutes(app: any) {
@@ -77,6 +86,25 @@ export function RegisterRoutes(app: any) {
 
 
             const promise = controller.createUser.apply(controller, validatedArgs);
+            promiseHandler(controller, promise, response, next);
+        });
+    app.post('/api/Users/:id/ChangeOfStatus',
+        function(request: any, response: any, next: any) {
+            const args = {
+                requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "UserChangeOfStatusRequest" },
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = iocContainer.get<UsersController>(UsersController);
+
+
+            const promise = controller.changeOfStatus.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
 

@@ -28,7 +28,7 @@
     "reflect-metadata": "^0.1.12",
     "sqlite3": "^4.0.0",
     "tsoa": "^2.1.1",
-    "tsoa-example-models": "git+https://github.com/stevenalexander/node-tsoa-example-models.git#v0.1"
+    "tsoa-example-models": "git+https://github.com/stevenalexander/node-tsoa-example-models.git#v0.3"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.8",
